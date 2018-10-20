@@ -16,6 +16,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Autowired
 	HibernateTemplate template;  
+	
 	/*public void setTemplate(HibernateTemplate template) {  
 	    this.template = template;  
 	}*/

@@ -1,29 +1,34 @@
 package com.naveen.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.naveen.model.Employee;
 import com.naveen.service.EmployeeService;
 
-@Controller
+
+@RestController
 //@RequestMapping("/employee")
-public class EmployeeController {
-	
+public class EmployeeController{
+
 	@Autowired
 	EmployeeService employeeService;
 	
-	/*public void setEmployeeService(EmployeeService employeeService) {
+	public void setEmployeeService(EmployeeService employeeService) {
 		this.employeeService = employeeService;
-	} */
+	} 
 
 	@RequestMapping("/empform")  
     public ModelAndView showform(){  
@@ -37,10 +42,12 @@ public class EmployeeController {
 		System.out.println("Hello this is controller");
 		 return new ModelAndView("redirect:/viewemp");
 		}
-	@RequestMapping("/viewemp") 
+	
+	@RequestMapping(value="/viewemp",method=RequestMethod.GET/*,produces=MediaType.APPLICATION_XML_VALUE*/)
     public ModelAndView viewemp(){  
         List<Employee> list=employeeService.getEmployees();  
-        return new ModelAndView("viewemp","Employeelist",list);  
+        return new ModelAndView("viewemp","Employeelist",list);
+        //return list;
     }
 	@RequestMapping(value="/deleteemp/{id}",method = RequestMethod.GET)  
 	public ModelAndView delete(@PathVariable int id){  
@@ -55,7 +62,8 @@ public class EmployeeController {
 	}
 	
 	   @RequestMapping(value="/editsave",method=RequestMethod.POST)
-	public ModelAndView editsave(@ModelAttribute("emp") Employee emp){  
+	public ModelAndView editsave(@ModelAttribute("emp") Employee emp){
+		   System.out.println(emp.getId());
 	        employeeService.updateEmployee(emp); 
 	        return new ModelAndView("redirect:/viewemp");  
 	    } 
