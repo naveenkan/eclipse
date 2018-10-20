@@ -115,7 +115,7 @@
 <dependency>
     <groupId>com.oracle</groupId>
     <artifactId>ojdbc14</artifactId>
-    <version>10.2.0</version>
+    <version>10.2.0.1.0</version>
 </dependency>
 
 
@@ -171,6 +171,7 @@
         </dependency>
 </dependencies>
   <build>
+  
   <plugins>
  <!--  <plugin>
   <groupId>org.mortbay.jetty</groupId>
