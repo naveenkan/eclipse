@@ -28,6 +28,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	public void updateEmployee(Employee employee) {
 		template.update(employee);
+		
 	}
 
 	public List<Employee> getEmployees() {
@@ -39,6 +40,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public Employee getEmployeeById(int id) {
 		 Employee e=(Employee)template.get(Employee.class,id);  
 		  return e; 
+		  
 	}
 
 	public void deleteEmployee(int id) {
